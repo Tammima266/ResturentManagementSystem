@@ -1,0 +1,78 @@
+﻿@model IEnumerable<ResturentManagementSystem1.Models.Category>
+
+@{
+    ViewData["Title"] = "Admin Dashboard - FunFood";
+    var combos = ViewBag.Combos as IEnumerable<ResturentManagementSystem1.Models.Combo>;
+}
+
+<div class="container my-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="fw-bold">Admin Management Dashboard ⚙️</h1>
+        <div>
+            <!-- Added Live Order Tracking Button -->
+            <a asp-action="Orders" class="btn btn-primary fw-bold shadow-sm me-2">
+                📦 Track Customer Orders <span class="badge bg-light text-dark ms-1">Live</span>
+            </a>
+            <a asp-action="CreateCategory" class="btn btn-success fw-bold">+ Add New Menu Item</a>
+        </div>
+    </div>
+
+    <h3 class="mb-3">Menu Categories</h3>
+    <div class="table-responsive mb-5">
+        <table class="table table-striped align-middle">
+            <thead class="table-dark">
+                <tr>
+                    <th>Image</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            <img src="@item.ImageUrl" alt="@item.Name" style="width: 50px; height: 50px; object-fit: cover;" class="rounded" />
+                        </td>
+                        <td><strong>@item.Name</strong></td>
+                        <td>৳@item.Price.ToString("0.00")</td>
+                        <td>
+                            <a asp-action="DeleteCategory" asp-route-id="@item.Id" class="btn btn-danger btn-sm">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <h3 class="mb-3">Special Combos</h3>
+    <div class="table-responsive">
+        <table class="table table-striped align-middle">
+            <thead class="table-secondary">
+                <tr>
+                    <th>Image</th>
+                    <th>Combo Name</th>
+                    <th>Details</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (combos != null)
+                {
+                    @foreach (var combo in combos)
+                    {
+                        <tr>
+                            <td>
+                                <img src="@combo.ImageUrl" alt="@combo.Name" style="width: 50px; height: 50px; object-fit: cover;" class="rounded" />
+                            </td>
+                            <td><strong>@combo.Name</strong></td>
+                            <td><small class="text-muted">@combo.Subtitle</small></td>
+                            <td>৳@combo.Price.ToString("0.00")</td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

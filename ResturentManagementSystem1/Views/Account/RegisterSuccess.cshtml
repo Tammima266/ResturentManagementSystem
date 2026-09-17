@@ -1,0 +1,19 @@
+﻿@{
+    ViewData["Title"] = "Registration Successful - FunFood";
+}
+
+<div class="container text-center my-5" style="max-width: 600px;">
+    <div class="card p-5 shadow-sm border-0 bg-light">
+        <div class="mb-3">
+            <span class="fs-1 text-success">🎉</span>
+        </div>
+        <h2 class="text-success fw-bold mb-3">Registration Successful!</h2>
+        <p class="lead text-muted mb-4">
+            Your account has been created successfully and your information has been securely saved. You can now log in to start placing your orders!
+        </p>
+        <div class="d-flex justify-content-center gap-3">
+            <a asp-action="Login" class="btn btn-primary px-4 fw-bold">Login Now 🚀</a>
+            <a asp-controller="Home" asp-action="Index" class="btn btn-outline-secondary px-4">Return Home</a>
+        </div>
+    </div>
+</div>

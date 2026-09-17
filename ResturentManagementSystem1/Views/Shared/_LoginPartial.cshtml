@@ -1,0 +1,26 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ResturentManagementSystem1.Models.ApplicationUser> SignInManager
+@inject UserManager<ResturentManagementSystem1.Models.ApplicationUser> UserManager
+
+<ul class="navbar-nav align-items-center">
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <li class="nav-item me-3">
+            <span class="nav-link text-dark fw-semibold mb-0">Hello, @UserManager.GetUserName(User)!</span>
+        </li>
+        <li class="nav-item">
+            <form class="form-inline" asp-controller="Account" asp-action="Logout" method="post">
+                <button type="submit" class="btn btn-outline-danger btn-sm px-3">Logout</button>
+            </form>
+        </li>
+    }
+    else
+    {
+        <li class="nav-item me-2">
+            <a class="btn btn-outline-primary btn-sm px-3" asp-controller="Account" asp-action="Login">Login</a>
+        </li>
+        <li class="nav-item">
+            <a class="btn btn-warning btn-sm px-3 text-dark fw-bold" asp-controller="Account" asp-action="Register">Register</a>
+        </li>
+    }
+</ul>

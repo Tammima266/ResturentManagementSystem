@@ -1,0 +1,13 @@
+﻿@{
+    ViewData["Title"] = "Order Success - FunFood";
+}
+
+<div class="container text-center my-5">
+    <div class="card p-5 shadow-sm mx-auto" style="max-width: 600px;">
+        <h1 class="text-success mb-3">🎉 Order Placed Successfully!</h1>
+        <p class="lead">Thank you for ordering with FunFood. Your payment via <strong>@ViewBag.PaymentMethod</strong> was processed successfully.</p>
+        <p class="text-muted">Your order has been registered and is now being prepared fresh in our kitchen.</p>
+        <hr class="my-4">
+        <a asp-controller="Home" asp-action="Index" class="btn btn-primary px-4">Return to Menu Home</a>
+    </div>
+</div>
