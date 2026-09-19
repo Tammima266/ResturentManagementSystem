@@ -16,13 +16,20 @@ namespace ResturentManagementSystem1.Controllers
             _context = context;
         }
 
-        // Admin Dashboard / Manage Menu Items
+        // Admin Dashboard / Manage Menu Items & Delivered Sales
         public async Task<IActionResult> Index()
         {
             var categories = await _context.Categories.ToListAsync();
             var combos = await _context.Combos.ToListAsync();
 
+            // Calculate total sales ONLY from orders with status "Delivered"
+            decimal totalSales = await _context.Orders
+                .Where(o => o.OrderStatus == "Delivered")
+                .SumAsync(o => (decimal?)o.TotalAmount) ?? 0;
+
+            ViewBag.TotalSales = totalSales;
             ViewBag.Combos = combos;
+
             return View(categories);
         }
 
@@ -92,6 +99,7 @@ namespace ResturentManagementSystem1.Controllers
             var order = await _context.Orders.FindAsync(id);
             if (order != null)
             {
+                // Updates the status in SQL Server (Pending, Preparing, Ready, Delivered, Cancelled)
                 order.OrderStatus = status;
                 _context.Update(order);
                 await _context.SaveChangesAsync();

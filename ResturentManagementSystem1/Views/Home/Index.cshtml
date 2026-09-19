@@ -12,6 +12,17 @@
         <p class="col-md-8 fs-5 mx-auto text-muted">
             Delicious meals, gourmet burgers, and awesome combo deals delivered right to your door hot and fresh.
         </p>
+
+        <!-- Quick Track Order Search Box (Only visible to logged-in customers, hidden for admins) -->
+        @if (User.Identity.IsAuthenticated && !User.IsInRole("Admin"))
+        {
+            <div class="mt-4">
+                <form asp-controller="Home" asp-action="TrackOrder" method="get" class="d-inline-flex justify-content-center align-items-center gap-2">
+                    <input type="number" name="id" class="form-control form-control-sm w-auto" placeholder="Enter Order ID (e.g., 1)" required />
+                    <button type="submit" class="btn btn-outline-danger btn-sm fw-bold">Track Status 🔍</button>
+                </form>
+            </div>
+        }
     </div>
 </div>
 

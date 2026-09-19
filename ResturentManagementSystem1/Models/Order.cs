@@ -18,7 +18,7 @@ namespace ResturentManagementSystem1.Models
         [Required]
         public decimal TotalAmount { get; set; }
 
-        public string OrderStatus { get; set; } = "Pending"; // Pending, Preparing, Completed, Cancelled
+        public string OrderStatus { get; set; } = "Pending"; // Pending, Preparing, Ready, Delivered, Cancelled
 
         public DateTime OrderDate { get; set; } = DateTime.Now;
 

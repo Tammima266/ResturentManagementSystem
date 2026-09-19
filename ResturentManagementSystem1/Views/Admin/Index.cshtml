@@ -3,6 +3,7 @@
 @{
     ViewData["Title"] = "Admin Dashboard - FunFood";
     var combos = ViewBag.Combos as IEnumerable<ResturentManagementSystem1.Models.Combo>;
+    decimal totalSales = ViewBag.TotalSales != null ? (decimal)ViewBag.TotalSales : 0;
 }
 
 <div class="container my-5">
@@ -14,6 +15,18 @@
                 📦 Track Customer Orders <span class="badge bg-light text-dark ms-1">Live</span>
             </a>
             <a asp-action="CreateCategory" class="btn btn-success fw-bold">+ Add New Menu Item</a>
+        </div>
+    </div>
+
+    <!-- Total Delivered Sales Card Widget -->
+    <div class="row mb-5">
+        <div class="col-md-4">
+            <div class="card shadow-sm border-0 bg-success text-white p-3">
+                <div class="card-body">
+                    <h5 class="card-title text-uppercase small fw-bold mb-1">Total Delivered Sales</h5>
+                    <h2 class="display-6 fw-bold mb-0">৳@totalSales.ToString("0.00")</h2>
+                </div>
+            </div>
         </div>
     </div>
 

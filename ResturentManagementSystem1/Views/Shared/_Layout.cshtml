@@ -35,10 +35,23 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark fw-semibold px-3" asp-controller="Cart" asp-action="Index">Cart 🛒</a>
                         </li>
+
+                        <!-- Customer Track Order shortcut pointing to their latest order dynamically -->
+                        @if (User.Identity.IsAuthenticated && !User.IsInRole("Admin"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark fw-semibold px-3" asp-controller="Home" asp-action="TrackMyLatestOrder">Track Order 📦</a>
+                            </li>
+                        }
+
+                        <!-- Admin Management Links -->
                         @if (User.IsInRole("Admin"))
                         {
                             <li class="nav-item">
                                 <a class="nav-link text-primary fw-bold px-3" asp-controller="Admin" asp-action="Index">Admin Dashboard ⚙️</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-danger fw-bold px-3" asp-controller="Admin" asp-action="Orders">Manage Orders 🚚</a>
                             </li>
                         }
                     </ul>
